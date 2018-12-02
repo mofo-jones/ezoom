@@ -1,0 +1,35 @@
+/* #main-container {
+  padding-top: 20px!important;
+} */
+
+.btn-container {
+    position: absolute;
+    transform: translate3d(0px, 34px, 0px);
+    top: 0px;
+    left: 0px;
+    will-change: transform;
+}
+
+
+.dropdown-toggle::after {
+    content: none !important;
+}
+/* 
+<thead>
+<tr>
+    <?php foreach ($th as $title) {?>
+    <th>
+        <?=$title?>
+    </th>
+    <?php }  ?>
+</tr>
+</thead>
+<tbody>
+<?php foreach ($list as $item) { ?>
+<tr>
+    <?php foreach ($td as $attr) { ?>                    
+    <td><?=$item[$attr]?></td>
+    <?php } ?>
+</tr>
+<?php } ?>
+</tbody> */
