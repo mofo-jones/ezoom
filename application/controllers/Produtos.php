@@ -15,12 +15,12 @@ class Produtos extends KS_Controller {
 	public function index()
 	{   
         $list  = new Listing();
-        $list->setList($this->Product->get_all());
-        $list->setTh(['ID','Nome', 'Preço', 'Quantidade', 'Categoria']);
-        $list->setTd(['id','name', 'price', 'amount', 'cat_name']);
-        $list->setEdit(true);
-        $list->setDelete(true);
-        $data['list'] = $list;
+        $list->setList($this->Product->get_all()); // Carrega os produtos
+        $list->setTh(['ID','Nome', 'Preço', 'Quantidade', 'Categoria']); // Nomes das colunas
+        $list->setTd(['id','name', 'price', 'amount', 'cat_name']); // Nomes dos campos do retorno do select
+        $list->setEdit(true); // Adiciona o botão de edição
+        $list->setDelete(true);// Adiciona o botão de excluir
+        $data['list'] = $list;// Lista para ser exibida
         		
 		$data['title'] = 'Produtos';
 		
@@ -31,17 +31,15 @@ class Produtos extends KS_Controller {
 	
 	public function delete($id)
 	{
-		$this->Product->delete($id);
+		$this->Product->delete($id);// Deleta o produto pelo id enviado
 	}
 	
 	public function edit($id)
 	{
-		$data['product']=$this->Product->get($id);
-		$data['categories']=$this->Category->get_all();
+		$data['product']=$this->Product->get($id);// Busca o produto pelo id
+		$data['categories']=$this->Category->get_all(); // busca todas as categorias para ser carregada no select
 		
-		$data['title'] = $data['product']->name;
-	
-		$this->load->view('templates/header', $data);
+		$this->load->view('templates/header', $data); // visualização
 		$this->load->view('produto', $data);
 		$this->load->view('templates/footer');
 	}
@@ -50,30 +48,31 @@ class Produtos extends KS_Controller {
 	
 	public function save()
 	{
-		$this->setRules();
-		if ($this->form_validation->run() == FALSE){	
-			$data['product']= $this->input->post();
-			$data['categories']=$this->Category->get_all();
-			$this->load->view('templates/header', $data);
+		$this->setRules();// regras do formulário
+		if ($this->form_validation->run() == FALSE){ //  validação do formulário	
+			$data['product']= $this->input->post();// insere os dados do post no formulário
+			$data['categories']=$this->Category->get_all();// busca todas as categorias para ser carregada no select
+			$this->load->view('templates/header', $data);// visualização
 			$this->load->view('produto', $data);
 			$this->load->view('templates/footer');
 		}
 		else {
-			$this->Product->save($this->input->post());		
-			redirect('produtos');	
+			$this->Product->save($this->input->post());// salva os dados do formulário
+			redirect('produtos');	// redireciona para lista de produtos
 		}	
 		
 	}
 
 	public function create()
 	{
-		$data=[];
-		$data['categories']=$this->Category->get_all();
-		$this->load->view('templates/header', $data);
+		$data=[];// carrega um formulário vazio
+		$data['categories']=$this->Category->get_all(); // busca todas as categorias para ser carregada no select
+		$this->load->view('templates/header', $data); // visualização
 		$this->load->view('produto', $data);
 		$this->load->view('templates/footer');
 	}
 
+	// regras do formulário
 	public function  setRules(){
 		$config = array(
 			array(
