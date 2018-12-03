@@ -66,7 +66,7 @@ class Categorias extends KS_Controller {
 		if ($this->form_validation->run() == FALSE){	
 			$data['category']= $this->input->post();
 			$this->load->view('templates/header', $data);
-			$this->load->view('produto', $data);
+			$this->load->view('categorias', $data);
 			$this->load->view('templates/footer');
 		}
 		else {
