@@ -94,4 +94,16 @@ class Categorias extends KS_Controller {
 		);	
 		$this->form_validation->set_rules($config);
 	}
+
+	public function getCategorias() {		
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($this->Category->get_all()));
+	}
+	
+	public function getCategoria($id) {
+		$this->output
+        ->set_content_type('application/json')
+		->set_output(json_encode($this->Category->get($id)));
+	}
 }

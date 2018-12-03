@@ -100,4 +100,16 @@ class Produtos extends KS_Controller {
 
 		$this->form_validation->set_rules($config);
 	}
+
+	public function getProdutos() {		
+		$this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($this->Product->get_all()));
+	}
+	
+	public function getProduto($id) {
+		$this->output
+        ->set_content_type('application/json')
+		->set_output(json_encode($this->Product->get($id)));
+	}
 }
